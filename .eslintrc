@@ -1,0 +1,10 @@
+{
+	"root": true,
+	"extends": ["standard", "eslint:recommended", "plugin:react/recommended"],
+	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"ecmaVersion": "latest"
+	}
+}

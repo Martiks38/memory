@@ -26,3 +26,4 @@ dist-ssr
 refs/
 doc/
 coverage/
+package-lock.json
