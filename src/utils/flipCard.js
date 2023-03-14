@@ -8,7 +8,7 @@ import getNameImg from './getNameImg'
  */
 
 const flipCard = (target, onFlip) => {
-  let card = target.closest('[data-flip]')
+  const card = target.closest('[data-flip]')
 
   const canFlip = card.dataset.flip
 
@@ -17,10 +17,10 @@ const flipCard = (target, onFlip) => {
   card.classList.toggle('flip')
 
   onFlip((stateGame) => {
-    let name = getNameImg(card)
-    let isFlip = card.classList.contains('flip')
+    const name = getNameImg(card)
+    const isFlip = card.classList.contains('flip')
 
-    let cardNames = isFlip
+    const cardNames = isFlip
       ? stateGame.cardNames.concat(name)
       : stateGame.cardNames.slice(0, 0)
 

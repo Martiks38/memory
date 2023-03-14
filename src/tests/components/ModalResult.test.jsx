@@ -1,21 +1,22 @@
 import React from 'react'
-import '@testing-library/jest-dom/extend-expect'
-import { fireEvent, render } from '@testing-library/react'
-
+import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
+import { cleanup, fireEvent, render } from '@testing-library/react'
+import matchers from '@testing-library/jest-dom/matchers'
 import ModalResult from '../../components/ModalResult'
 import millisecondsToMinutesSeconds from '../../utils/millisecondsToMinutesSeconds'
 
+expect.extend(matchers)
+
 describe('ModalResult', () => {
   let try_game
-  let modal_result
-  let dataGame = {
+
+  const dataGame = {
     flips: 36,
-    time: 60 * 1000, // one minute
+    time: 60 * 1000 // one minute
   }
-  let status
 
   beforeEach(() => {
-    try_game = jest.fn()
+    try_game = vi.fn()
   })
 
   afterEach(() => {
@@ -23,12 +24,14 @@ describe('ModalResult', () => {
   })
 
   describe('Button test', () => {
-    beforeEach(() => {
-      status = 'victory'
+    let modal_result
 
-      modal_result = render(
-        <ModalResult dataGame={dataGame} tryGame={try_game} status={status} />
-      )
+    beforeEach(() => {
+      modal_result = render(<ModalResult dataGame={dataGame} tryGame={try_game} status="victory" />)
+    })
+
+    afterEach(() => {
+      cleanup()
     })
 
     test('When pressing "Inicio", the pathname must be "/".', () => {
@@ -49,18 +52,18 @@ describe('ModalResult', () => {
   })
 
   describe('Victory', () => {
-    beforeEach(() => {
-      status = 'victory'
+    let modal_result
 
-      modal_result = render(
-        <ModalResult dataGame={dataGame} tryGame={try_game} status={status} />
-      )
+    beforeEach(() => {
+      modal_result = render(<ModalResult dataGame={dataGame} tryGame={try_game} status="victory" />)
+    })
+
+    afterEach(() => {
+      cleanup()
     })
 
     test('The title should be: "Una victoria mínima, pero victoria al fin y al cabo."', () => {
-      const title = modal_result.getByText(
-        'Una victoria mínima, pero victoria al fin y al cabo.'
-      )
+      const title = modal_result.getByText('Una victoria mínima, pero victoria al fin y al cabo.')
 
       expect(title).toBeInTheDocument()
     })
@@ -81,12 +84,10 @@ describe('ModalResult', () => {
   })
 
   describe('Defeat', () => {
-    beforeEach(() => {
-      status = 'defeat'
+    let modal_result
 
-      modal_result = render(
-        <ModalResult dataGame={dataGame} tryGame={try_game} status={status} />
-      )
+    beforeEach(() => {
+      modal_result = render(<ModalResult dataGame={dataGame} tryGame={try_game} status="defeat" />)
     })
 
     test('The title should be: "Oídos que resuenan, visión borrosa... el fin está cerca."', () => {

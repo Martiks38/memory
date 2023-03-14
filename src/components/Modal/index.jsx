@@ -1,5 +1,5 @@
-import { useEffect } from 'react'
-import { $ } from '../../utils/selectors'
+import React from 'react'
+import PropTypes from 'prop-types'
 
 /**
  * Modal container centered on the screen.
@@ -10,35 +10,22 @@ import { $ } from '../../utils/selectors'
  * @property {string} props.styles - List of classes in a string.
  */
 function Modal({ children, styles }) {
-  // useEffect(() => {
-  //   const $modal = $('#modal')
+	return (
+		<>
+			<div className="absolute h-full w-full bg-black opacity-60 z-10" id="back-modal" />
+			<article
+				className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 ${styles}`}
+				id="modal"
+			>
+				{children}
+			</article>
+		</>
+	)
+}
 
-  //   const resizeModal = () => {
-  //     $modal.style.transform = 'scale() translate(-50%, -50%)'
-  //   }
-
-  //   window.addEventListener('resize')
-
-  //   return () => {
-  //     window.removeEventListener('resize')
-  //     if ($modal) $modal.style.transform = 'none'
-  //   }
-  // }, [])
-
-  return (
-    <>
-      <div
-        className="absolute h-full w-full bg-black opacity-60 z-10"
-        id="back-modal"
-      ></div>
-      <article
-        className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 ${styles}`}
-        id="modal"
-      >
-        {children}
-      </article>
-    </>
-  )
+Modal.propTypes = {
+	children: PropTypes.element,
+	styles: PropTypes.string
 }
 
 export default Modal

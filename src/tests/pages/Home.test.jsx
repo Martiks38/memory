@@ -1,20 +1,22 @@
 import React from 'react'
+import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 import { fireEvent, render } from '@testing-library/react'
-import '@testing-library/jest-dom/extend-expect'
-
+import matchers from '@testing-library/jest-dom/matchers'
 import Home from '../../pages/Home'
+
+expect.extend(matchers)
 
 beforeAll(() => {
   Object.defineProperty(window, 'matchMedia', {
     writable: true,
-    value: jest.fn().mockImplementation((query) => ({
+    value: vi.fn().mockImplementation((query) => ({
       matches: false,
       media: query,
       onchange: null,
-      addEventListener: jest.fn(),
-      removeEventListener: jest.fn(),
-      dispatchEvent: jest.fn(),
-    })),
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      dispatchEvent: vi.fn()
+    }))
   })
 })
 

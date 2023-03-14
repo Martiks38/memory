@@ -7,8 +7,8 @@
 const millisecondsToMinutesSeconds = (milliseconds) => {
   if (milliseconds < 0 || typeof milliseconds !== 'number') return ['XX', 'XX']
 
-  let minutes = ('00' + Math.floor(milliseconds / 60000)).slice(-2)
-  let seconds = ('00' + Math.floor((milliseconds % 60000) / 1000)).slice(-2)
+  const minutes = ('00' + Math.floor(milliseconds / 60000)).slice(-2)
+  const seconds = ('00' + Math.floor((milliseconds % 60000) / 1000)).slice(-2)
 
   return [minutes, seconds]
 }

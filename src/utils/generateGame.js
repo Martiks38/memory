@@ -1,15 +1,15 @@
 /** Represents a game. */
 class Game {
   /**
-   * Order of the game matrix.
-   * @type {number}
-   */
+	 * Order of the game matrix.
+	 * @type {number}
+	 */
   #order
 
   /**
-   * Image url list.
-   * @type {string[]}
-   * */
+	 * Image url list.
+	 * @type {string[]}
+	 * */
   #unique_cards = [
     '/Cards/Bone_Bearer.webp',
     '/Cards/Bone_Captain.webp',
@@ -28,13 +28,13 @@ class Game {
     '/Cards/Squiffy_Ghast.webp',
     '/Cards/The_Collector.webp',
     '/Cards/The_Thing.webp',
-    '/Cards/Vestal.webp',
+    '/Cards/Vestal.webp'
   ]
 
   /**
-   * List of ids for key.
-   * @type {string[]}
-   */
+	 * List of ids for key.
+	 * @type {string[]}
+	 */
   #ids = [
     '0782bf46-9af3-40e6-a957-494ce7579bae',
     '7541012d-175a-4a13-96d6-39bd46209867',
@@ -71,32 +71,32 @@ class Game {
     'cc76f129-5d5c-482d-83b7-d0c812ef54eb',
     'daa61d52-d666-45f5-94ad-bafd16d10394',
     '6ab35beb-822a-49b0-bb45-3782aff1b68b',
-    '0ef55ec0-666a-43d4-9799-eaed57275404',
+    '0ef55ec0-666a-43d4-9799-eaed57275404'
   ]
 
   #matrix = []
 
   /**
-   * The value must be even, otherwise the value 6 will be assigned.
-   * @param {number} order
-   */
-  constructor(order) {
+	 * The value must be even, otherwise the value 6 will be assigned.
+	 * @param {number} order
+	 */
+  constructor (order) {
     this.#order = order % 2 === 0 ? order : 6
 
     this.#matrix = Array.from({ length: order ** 2 }).fill(null)
   }
 
   /** Returns the order of the array. */
-  get getOrder() {
+  get getOrder () {
     return this.#order
   }
 
   /** Returns the name of the cards.  */
-  getNameCards() {
-    let names = []
+  getNameCards () {
+    const names = []
 
     this.#unique_cards.forEach((card) => {
-      let name = card.split('/').at(-1).split('.').at(0)
+      const name = card.split('/').at(-1).split('.').at(0)
 
       names.push(name)
     })
@@ -105,31 +105,31 @@ class Game {
   }
 
   /**
-   * @typedef {Object} Card
-   * @property {string} url_img - Url of the card image.
-   * @property {string} id - ID of the card.
-   */
+	 * @typedef {Object} Card
+	 * @property {string} url_img - Url of the card image.
+	 * @property {string} id - ID of the card.
+	 */
 
   /**
-   * Generates an unordered array of cards.
-   *
-   * @returns {Card[]}
-   */
-  generateMatrix() {
-    let cards_clone = this.#unique_cards.concat(this.#unique_cards)
-    let length = cards_clone.length
+	 * Generates an unordered array of cards.
+	 *
+	 * @returns {Card[]}
+	 */
+  generateMatrix () {
+    const cardsClone = this.#unique_cards.concat(this.#unique_cards)
+    const length = cardsClone.length
 
     for (let i = 0; i < length; i++) {
-      let rand_index = Math.floor(Math.random() * (length - 1))
+      const randIndex = Math.floor(Math.random() * (length - 1))
 
-      let temp = cards_clone[i]
-      cards_clone[i] = cards_clone[rand_index]
-      cards_clone[rand_index] = temp
+      const temp = cardsClone[i]
+      cardsClone[i] = cardsClone[randIndex]
+      cardsClone[randIndex] = temp
     }
 
     const gameMatrix = this.#matrix.map((_, index) => {
-      let id = this.#ids[index]
-      let url_img = cards_clone[index]
+      const id = this.#ids[index]
+      const url_img = cardsClone[index]
 
       return { url_img, id }
     })

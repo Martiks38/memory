@@ -1,7 +1,8 @@
 import newGame from '../../utils/generateGame'
+import { beforeEach, describe, expect, test } from 'vitest'
 
 let matrix = []
-let order = newGame.getOrder
+const order = newGame.getOrder
 
 describe('Order', () => {
   test('It should return a number.', () => {
@@ -19,9 +20,7 @@ describe('Generated game', () => {
       expect(Array.isArray(matrix)).toBeTruthy()
     })
 
-    test(`Square matrix of order ${order}. Its length must be ${
-      order ** 2
-    }.`, () => {
+    test(`Square matrix of order ${order}. Its length must be ${order ** 2}.`, () => {
       expect(matrix).toHaveLength(order ** 2)
     })
 
@@ -33,7 +32,7 @@ describe('Generated game', () => {
         expect(el).toEqual(
           expect.objectContaining({
             id: expect.stringMatching(id_expected),
-            url_img: expect.stringMatching(url_img_expected),
+            url_img: expect.stringMatching(url_img_expected)
           })
         )
       })
@@ -42,7 +41,7 @@ describe('Generated game', () => {
 
   describe('The matrix of the new game must be different from the previous one.', () => {
     test('isDiff must be true when finding a difference between the old and new array.', () => {
-      let newMatrix = newGame.generateMatrix()
+      const newMatrix = newGame.generateMatrix()
       let isDiff = false
 
       for (let ind = 0; ind < order ** 2; ind++) {
