@@ -1,48 +1,16 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import ButtonLink from '../../components/ButtonLink'
+import { useParallax } from '../../hooks/useParallax'
 import Layout from '../Layout'
 
 /** Home page.
  *
  * @Component
  */
-function Home () {
-  useEffect(() => {
-    // Prefers reduced motion
-    const query = 'prefers-reduced-motion: reduce'
-    const mediaWindow = window.matchMedia(query)
+function Home() {
+	useParallax({ containerSelector: '#containerHamlet', elementSelector: '#hamlet' })
 
-    if (mediaWindow.matches) return
-
-    // Animation hamlet
-    const containerHamlet = document.querySelector('#containerHamlet')
-
-    const hamlet = document.querySelector('#hamlet')
-
-    const { height } = hamlet.getBoundingClientRect()
-    const halfHeight = height / 2
-
-    const parallaxY = (event) => {
-      const { offsetY } = event
-      const translateY = ((offsetY - halfHeight) / halfHeight) * 5
-
-      hamlet.style.transform = `translateY(${translateY}px)`
-    }
-
-    const resetParallaxY = () => {
-      hamlet.style.transform = 'translateY(0px)'
-    }
-
-    containerHamlet.addEventListener('mousemove', parallaxY)
-    containerHamlet.addEventListener('mouseleave', resetParallaxY)
-
-    return () => {
-      containerHamlet.removeEventListener('mousemove', parallaxY)
-      containerHamlet.removeEventListener('mouseleave', resetParallaxY)
-    }
-  }, [])
-
-  return (
+	return (
 		<Layout>
 			<div className="h-full w-full overflow-hidden" id="containerHamlet">
 				<figure className="relative shadowTop">
@@ -69,7 +37,7 @@ function Home () {
 				</div>
 			</div>
 		</Layout>
-  )
+	)
 }
 
 export default Home
