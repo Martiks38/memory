@@ -1,0 +1,13 @@
+{
+  "include": ["src/**/*"],
+  "exclude": ["src/tests/*"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "lib": ["DOM", "ESNext"],
+    "moduleResolution": "node",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "target": "ES2015"
+  }
+}

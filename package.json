@@ -8,16 +8,17 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest --run",
+    "test:root": "npm run test -- --root",
     "test:watch": "vitest --watch",
     "test:coverage": "npm run test -- --coverage",
-    "test:ui": "npm run test -- --ui",
+    "test:ui": "vitest --watch --ui",
     "format": "prettier --write .",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts",
     "lint:fix": "npm run lint -- --fix",
     "prepare": "husky install"
   },
   "dependencies": {
-    "@testing-library/user-event": "^14.4.3",
+    "prop-types": "15.8.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "wouter": "2.8.0-alpha.2"
@@ -31,6 +32,7 @@
     "@vitest/coverage-c8": "0.29.2",
     "@vitest/ui": "0.29.2",
     "autoprefixer": "10.4.12",
+    "clsx": "1.2.1",
     "eslint": "8.36.0",
     "eslint-plugin-import": "2.27.5",
     "eslint-plugin-react": "7.32.2",
