@@ -1,11 +1,11 @@
 import React, { Suspense } from 'react'
 import { Route, Switch } from 'wouter'
-import PageLoader from './components/PageLoader'
+import PageLoader from '@/components/PageLoader'
 import './App.css'
 import Home from './pages/Home'
 
-const Error404 = React.lazy(() => import('./pages/Error404'))
-const Game = React.lazy(() => import('./pages/Game'))
+const Error404 = React.lazy(() => import('@/pages/Error404'))
+const Game = React.lazy(() => import('@/pages/Game'))
 
 function App() {
 	return (
@@ -13,10 +13,10 @@ function App() {
 			<Route path="/" component={Home} />
 			<Suspense fallback={<PageLoader />}>
 				<Route path="/game/time_trial">
-					<Game trial />
+					<Game timeTrial={true} />
 				</Route>
 				<Route path="/game" component={Game} />
-				<Route path="/:rest*" component={Error404} />
+				<Route component={Error404} />
 			</Suspense>
 		</Switch>
 	)

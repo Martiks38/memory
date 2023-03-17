@@ -3,7 +3,7 @@ import Modal from '../Modal'
 import Button from '../Button'
 import ButtonLink from '../ButtonLink'
 import millisecondsToMinutesSeconds from '../../utils/millisecondsToMinutesSeconds'
-import { total_time } from '../../consts/game'
+import { totalTime } from '../../consts/game'
 import PropTypes from 'prop-types'
 
 /**
@@ -18,20 +18,20 @@ import PropTypes from 'prop-types'
  * @property {() => void} props.tryGame - Restart the game.
  */
 
-function ModalResult ({ dataGame, tryGame, status }) {
-  const won = status === 'victory'
+function ModalResult({ dataGame, tryGame, status }) {
+	const won = status === 'victory'
 
-  const time = won ? dataGame.time : total_time
+	const time = won ? dataGame.time : totalTime
 
-  const [minutes, seconds] = millisecondsToMinutesSeconds(time)
+	const [minutes, seconds] = millisecondsToMinutesSeconds(time)
 
-  const title = won
-    ? 'Una victoria mínima, pero victoria al fin y al cabo.'
-    : 'Oídos que resuenan, visión borrosa... el fin está cerca.'
+	const title = won
+		? 'Una victoria mínima, pero victoria al fin y al cabo.'
+		: 'Oídos que resuenan, visión borrosa... el fin está cerca.'
 
-  return (
+	return (
 		<Modal styles="text-2xl text-center text-black w-full h-full rounded-lg max-w-[620px] max-h-[425px]">
-			<div className="relative top-0 left-0 mx-auto p-4 w-fit h-full -z-10" id="modal-img">
+			<div className="relative top-0 left-0 mx-auto p-4 w-fit h-full" id="modal-img">
 				<div className="absolute top-0 left-0 flex items-center justify-center w-full h-full">
 					<h1 className="absolute result__title shadowText leading-[normal]">{title}</h1>
 					<div className="result__info">
@@ -63,13 +63,13 @@ function ModalResult ({ dataGame, tryGame, status }) {
 				<img src="/journal_popup.webp" alt="" className="w-auto h-full object-contain" />
 			</div>
 		</Modal>
-  )
+	)
 }
 
 ModalResult.propTypes = {
-  dataGame: PropTypes.object,
-  tryGame: PropTypes.func,
-  status: PropTypes.string
+	dataGame: PropTypes.object,
+	tryGame: PropTypes.func,
+	status: PropTypes.string
 }
 
 export default ModalResult

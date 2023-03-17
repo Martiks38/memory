@@ -24,7 +24,7 @@ function Modal({ children, styles }) {
 }
 
 Modal.propTypes = {
-	children: PropTypes.element,
+	children: PropTypes.object,
 	styles: PropTypes.string
 }
 

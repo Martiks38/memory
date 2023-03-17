@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import millisecondsToMinutesSeconds from '../../utils/millisecondsToMinutesSeconds'
-import { total_time } from '../../consts/game'
+import millisecondsToMinutesSeconds from '@/utils/millisecondsToMinutesSeconds'
+import { totalTime } from '@/consts/game'
 import PropTypes from 'prop-types'
 
 /**
@@ -23,44 +23,40 @@ import PropTypes from 'prop-types'
  * @param {SetGameState} props.onFinish - Game manager for when time is up.
  */
 
-function ViewTime ({ initTime, onFinish }) {
-  const [time, setTime] = useState(total_time)
+function ViewTime({ initTime, onFinish }) {
+	const [time, setTime] = useState(totalTime)
 
-  useEffect(() => {
-    let left_time = null
+	useEffect(() => {
+		let leftTime
 
-    if (time <= 0) {
-      clearInterval(left_time)
+		if (time <= 0) {
+			clearInterval(leftTime)
 
-      setTime(total_time)
-      onFinish((stateGame) => {
-        return { ...stateGame, status: 'defeat' }
-      })
-    }
+			setTime(totalTime)
+			onFinish('defeat')
+		}
 
-    if (initTime !== 0) {
-      left_time = setInterval(() => {
-        setTime((time) => time - 1000)
-      }, 1000)
-    }
+		if (initTime !== 0) {
+			leftTime = setInterval(() => {
+				setTime((time) => time - 1000)
+			}, 1000)
+		}
 
-    return () => {
-      if (left_time) clearInterval(left_time)
-    }
-  }, [initTime, time])
+		return () => clearInterval(leftTime)
+	}, [initTime, time])
 
-  const [minutes, seconds] = millisecondsToMinutesSeconds(time)
+	const [minutes, seconds] = millisecondsToMinutesSeconds(time)
 
-  return (
+	return (
 		<h1 className="mb-4 text-4xl text-center text-[#cd0300]" id="left-time-title">
 			Tiempo restante {minutes}:{seconds}
 		</h1>
-  )
+	)
 }
 
 ViewTime.propTypes = {
-  initTime: PropTypes.number,
-  onFinish: PropTypes.func
+	initTime: PropTypes.number,
+	onFinish: PropTypes.func
 }
 
 export default ViewTime

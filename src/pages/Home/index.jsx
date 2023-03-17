@@ -1,6 +1,6 @@
 import React from 'react'
-import ButtonLink from '../../components/ButtonLink'
-import { useParallax } from '../../hooks/useParallax'
+import ButtonLink from '@/components/ButtonLink'
+import { useParallax } from '@/hooks/useParallax'
 import Layout from '../Layout'
 
 /** Home page.

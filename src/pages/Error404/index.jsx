@@ -1,13 +1,13 @@
 import React from 'react'
-import ButtonLink from '../../components/ButtonLink'
+import ButtonLink from '@/components/ButtonLink'
 import Layout from '../Layout'
 
 /** 404 error page.
  *
  * @Component
  */
-function Error404 () {
-  return (
+function Error404() {
+	return (
 		<Layout>
 			<article className="absolute w-80 h-auto top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-[0_0_4px_5px_#ce0300] rounded-md md:w-[540px]">
 				<div className="flex flex-col-reverse items-center justify-between gap-8 p-4 sm:flex-row">
@@ -28,7 +28,7 @@ function Error404 () {
 				</div>
 			</article>
 		</Layout>
-  )
+	)
 }
 
 export default Error404

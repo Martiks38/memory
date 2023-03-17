@@ -3,4 +3,4 @@
  * @constant
  * @type {number}
  */
-export const total_time = 5 * 60 * 1000
+export const totalTime = 5 * 60 * 1000

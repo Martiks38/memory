@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import flipCard from '../../utils/flipCard'
+import flipCard from '@/utils/flipCard'
 import PropTypes from 'prop-types'
 
 /**
@@ -19,8 +19,8 @@ import PropTypes from 'prop-types'
  * @property {string} props.src - Image path.
  * @property {SetGameState} props.onFlip - Game manager for when time is up.
  */
-function Card ({ src, onFlip }) {
-  return (
+function Card({ src, onFlip }) {
+	return (
 		<div className="card-container" onClick={(event) => flipCard(event.target, onFlip)}>
 			<div className="relative p-2 w-full h-full card" data-flip="true" data-testid="card">
 				<figure className="absolute top-0 left-0 flex items-center justify-center h-full w-full bg-black border-solid border-2 border-[#BFB37A] rounded-md cursor-pointer z-10 back-card">
@@ -39,12 +39,12 @@ function Card ({ src, onFlip }) {
 				</figure>
 			</div>
 		</div>
-  )
+	)
 }
 
 Card.propTypes = {
-  src: PropTypes.string,
-  onFlip: PropTypes.func
+	src: PropTypes.string,
+	onFlip: PropTypes.func
 }
 
 export default memo(Card, (prevProps, props) => prevProps.src === props.src)
