@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import millisecondsToMinutesSeconds from '@/utils/millisecondsToMinutesSeconds'
 import { totalTime } from '@/consts/game'
 import PropTypes from 'prop-types'
+import { useCountdown } from '@/hooks/useCountdown'
 
 /**
  * @typedef {Object} GameState
@@ -24,26 +25,7 @@ import PropTypes from 'prop-types'
  */
 
 function ViewTime({ initTime, onFinish }) {
-	const [time, setTime] = useState(totalTime)
-
-	useEffect(() => {
-		let leftTime
-
-		if (time <= 0) {
-			clearInterval(leftTime)
-
-			setTime(totalTime)
-			onFinish('defeat')
-		}
-
-		if (initTime !== 0) {
-			leftTime = setInterval(() => {
-				setTime((time) => time - 1000)
-			}, 1000)
-		}
-
-		return () => clearInterval(leftTime)
-	}, [initTime, time])
+	const time = useCountdown({ initTime, totalTime, onFinish })
 
 	const [minutes, seconds] = millisecondsToMinutesSeconds(time)
 
